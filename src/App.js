@@ -14,7 +14,6 @@ const App = () => {
     const fetchData = async () =>{
         try{
         const {data} =await Axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${query}&appid=3aaa8d49118b513773199d96afa397f1&units=metric`)
-        console.log(data);
         setDatahook(data)
         }catch(err){
             console.log(err)
@@ -38,10 +37,12 @@ const App = () => {
   }
     return (
         <div>
-            <form onSubmit={handleSubmit} className="form_class">
-                <input type="text" placeholder="Enter city" value={value} onChange={handleChange}/>
-                <button>Search</button>
-            </form>
+            <div className="mx-auto form_class">
+               <form onSubmit={handleSubmit}>
+                  <input type="text" placeholder="Enter city" value={value} onChange={handleChange}/>
+                  <button className="btn btn-primary px-2 fs-5">Search</button>
+                </form>
+            </div>
             <div>
                 {datahook ? <myApiData.Provider value={{datahook}}> <Mydata /></myApiData.Provider> : ""}
             </div>
